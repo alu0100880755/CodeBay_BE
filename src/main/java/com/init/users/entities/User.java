@@ -1,12 +1,13 @@
 package com.init.users.entities;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -20,81 +21,94 @@ public class User {
 	private Long Id;
 
 	@Column(name = "name", nullable = false, length = 30)
-	private String Name;
+	private String name;
 
 	@Column(name = "surname", nullable = false, length = 30)
-	private String Surname;
+	private String surname;
 
 	@Column(name = "email", nullable = false, length = 30)
-	private String Email;
+	private String email;
 
 	@Column(name = "city", nullable = false, length = 30)
-	private String City;
+	private String city;
 
 	@Column(name = "active", nullable = false, length = 30)
-	private Boolean Active;
+	private Boolean active;
 
 	@Column(name = "birthday", nullable = false, length = 30)
-	private String Birthday;
+	private String birthday;
 
-	@Column(name = "creation_date", nullable = false, length = 30)
-	private LocalDateTime Creation_Date;
+	@Column(name = "creation_date")
+	private ZonedDateTime creation_date;
 
 	// Getter & Setters
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getSurname() {
-		return Surname;
+		return surname;
 	}
 
 	public void setSurname(String surname) {
-		Surname = surname;
+		this.surname = surname;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getCity() {
-		return City;
+		return city;
 	}
 
 	public void setCity(String city) {
-		City = city;
+		this.city = city;
 	}
 
 	public Boolean getActive() {
-		return Active;
+		return active;
 	}
 
 	public void setActive(Boolean active) {
-		Active = active;
+		this.active = active;
 	}
 
 	public String getBirthday() {
-		return Birthday;
+		return birthday;
 	}
 
 	public void setBirthday(String birthday) {
-		Birthday = birthday;
+		this.birthday = birthday;
 	}
 
-	public LocalDateTime getCreation_Date() {
-		return Creation_Date;
+	public ZonedDateTime getCreation_date() {
+		return creation_date;
 	}
 
-	public void setCreation_Date(LocalDateTime creation_Date) {
-		Creation_Date = creation_Date;
+	public void setCreation_date(ZonedDateTime creation_date) {
+		this.creation_date = creation_date;
+	}
+
+	@PrePersist
+	public void addTimestamp() {
+		creation_date = ZonedDateTime.now();
 	}
 
 }
