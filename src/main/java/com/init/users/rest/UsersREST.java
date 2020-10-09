@@ -77,6 +77,24 @@ public class UsersREST {
 
 	}
 
+	// Get Users who live in X
+	@RequestMapping(value = "city/{city}")
+	public ResponseEntity<List<User>> getUserbyCity(@PathVariable("city") String city) {
+
+		List<User> activeUsers = userDAO.findByCityStartingWith(city);
+
+		if (activeUsers.isEmpty()) {
+
+			return ResponseEntity.noContent().build();
+
+		} else {
+
+			return ResponseEntity.ok(activeUsers);
+
+		}
+
+	}
+
 	////////////////////////////
 	// POST SECTION (CREATE) //
 	////////////////////////////
