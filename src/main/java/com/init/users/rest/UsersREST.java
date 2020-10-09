@@ -92,14 +92,26 @@ public class UsersREST {
 
 	}
 
-	// Delete user
+	// Delete user by URL
 	@DeleteMapping(value = "{userID}")
-	public ResponseEntity<String> deleteUser(@PathVariable("userID") Long userID) {
+	public ResponseEntity<String> deleteUserByURL(@PathVariable("userID") Long
+	userID) {
 
-		userDAO.deleteById(userID);
+	userDAO.deleteById(userID);
 
-		return ResponseEntity.ok("User deleted");
+	return ResponseEntity.ok("User deleted");
 
 	}
+
+	// Delete user by ID
+	@DeleteMapping
+	public ResponseEntity<String> deleteUserById(@RequestBody User user) {
+
+	userDAO.deleteById(user.getId());
+
+	return ResponseEntity.ok("User deleted");
+
+	}
+
 
 }
