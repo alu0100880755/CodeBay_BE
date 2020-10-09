@@ -106,6 +106,7 @@ public class User {
 		this.creation_date = creation_date;
 	}
 
+	// Method for auto-generate data
 	@PrePersist
 	public void addTimestamp() {
 		creation_date = ZonedDateTime.now();
