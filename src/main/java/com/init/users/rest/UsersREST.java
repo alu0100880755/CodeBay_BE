@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +57,38 @@ public class UsersREST {
 		User newUser = userDAO.save(user);
 
 		return ResponseEntity.ok(newUser);
+
+	}
+
+	// Update user
+	@PutMapping
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
+
+		Optional<User> optionalUser = userDAO.findById(user.getId());
+
+		if (optionalUser.isPresent()) {
+
+			// Updated data
+			User updatedUser = optionalUser.get();
+
+			// Updating values
+			updatedUser.setName(user.getName());
+			updatedUser.setSurname(user.getSurname());
+			updatedUser.setEmail(user.getEmail());
+			updatedUser.setCity(user.getCity());
+			updatedUser.setActive(user.getActive());
+			updatedUser.setBirthday(user.getBirthday());
+
+			// Updating user
+			userDAO.save(updatedUser);
+
+			return ResponseEntity.ok(updatedUser);
+
+		} else {
+
+			return ResponseEntity.notFound().build();
+
+		}
 
 	}
 
