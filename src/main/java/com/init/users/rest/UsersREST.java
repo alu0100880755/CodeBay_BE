@@ -151,4 +151,14 @@ public class UsersREST {
 
 	}
 
+	// Delete all users
+	@DeleteMapping(value = "/deleteallusers")
+	public ResponseEntity<String> deleteAllUsers() {
+
+		userDAO.deleteAll();
+
+		return ResponseEntity.ok("All users deleted");
+
+	}
+
 }
