@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,10 @@ public class UsersREST {
 	@Autowired
 	private UsersDAO userDAO;
 
+	////////////////////
+	// GET SECTION //
+	///////////////////
+
 	// Get Full Users List
 	@GetMapping
 	public ResponseEntity<List<User>> getUser() {
@@ -33,7 +38,7 @@ public class UsersREST {
 		return ResponseEntity.ok(users);
 	}
 
-	// Get specific User
+	// Get specific User By ID
 	@RequestMapping(value = "{userID}")
 	public ResponseEntity<User> getUserById(@PathVariable("userID") Long userID) {
 
@@ -50,6 +55,32 @@ public class UsersREST {
 
 	}
 
+	// Get active Users
+	@RequestMapping("active_users")
+	public ResponseEntity<List<User>> getActiveUser() {
+
+		User user = new User();
+		user.setActive(true);
+		Example<User> example = Example.of(user);
+
+		List<User> activeUsers = userDAO.findAll(example);
+
+		if (activeUsers.isEmpty()) {
+
+			return ResponseEntity.noContent().build();
+
+		} else {
+
+			return ResponseEntity.ok(activeUsers);
+
+		}
+
+	}
+
+	////////////////////////////
+	// POST SECTION (CREATE) //
+	////////////////////////////
+
 	// Create a user
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -59,6 +90,10 @@ public class UsersREST {
 		return ResponseEntity.ok(newUser);
 
 	}
+
+	///////////////////////////
+	// PUT SECTION (UPDATE) //
+	///////////////////////////
 
 	// Update user
 	@PutMapping
@@ -92,14 +127,17 @@ public class UsersREST {
 
 	}
 
+	//////////////////////
+	// DELETE SECTION //
+	/////////////////////
+
 	// Delete user by URL
 	@DeleteMapping(value = "{userID}")
-	public ResponseEntity<String> deleteUserByURL(@PathVariable("userID") Long
-	userID) {
+	public ResponseEntity<String> deleteUserByURL(@PathVariable("userID") Long userID) {
 
-	userDAO.deleteById(userID);
+		userDAO.deleteById(userID);
 
-	return ResponseEntity.ok("User deleted");
+		return ResponseEntity.ok("User deleted");
 
 	}
 
@@ -107,11 +145,10 @@ public class UsersREST {
 	@DeleteMapping
 	public ResponseEntity<String> deleteUserById(@RequestBody User user) {
 
-	userDAO.deleteById(user.getId());
+		userDAO.deleteById(user.getId());
 
-	return ResponseEntity.ok("User deleted");
+		return ResponseEntity.ok("User deleted");
 
 	}
-
 
 }
