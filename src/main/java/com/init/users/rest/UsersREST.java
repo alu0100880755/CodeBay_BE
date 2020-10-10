@@ -95,6 +95,24 @@ public class UsersREST {
 
 	}
 
+	// Get cities starting per X
+	@RequestMapping(value = "/city_name/{city}")
+	public ResponseEntity<List<String>> getCities(@PathVariable("city") String city) {
+
+		List<String> userCities = userDAO.findAllCitiesByLetter(city);
+
+		if (userCities.isEmpty()) {
+
+			return ResponseEntity.notFound().build();
+
+		} else {
+
+			return ResponseEntity.ok(userCities);
+
+		}
+
+	}
+
 	// Get Users by creation date (ASC/DESC)
 	@RequestMapping(value = "/date/{order}")
 	public ResponseEntity<List<User>> getUserbyDate(@PathVariable("order") String order) {
