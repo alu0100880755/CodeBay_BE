@@ -57,7 +57,7 @@ public class UsersREST {
 
 	}
 
-	// Get active Users
+	// Get active Users (Full JSON)
 	@RequestMapping("active_users")
 	public ResponseEntity<List<User>> getActiveUser() {
 
@@ -66,6 +66,24 @@ public class UsersREST {
 		Example<User> example = Example.of(user);
 
 		List<User> activeUsers = userDAO.findAll(example);
+
+		if (activeUsers.isEmpty()) {
+
+			return ResponseEntity.noContent().build();
+
+		} else {
+
+			return ResponseEntity.ok(activeUsers);
+
+		}
+
+	}
+
+	// Get active Users (Names)
+	@RequestMapping("active_users/names")
+	public ResponseEntity<List<String>> getActiveUserName() {
+
+		List<String> activeUsers = userDAO.findActiveUsersName();
 
 		if (activeUsers.isEmpty()) {
 

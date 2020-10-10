@@ -17,4 +17,8 @@ public interface UsersDAO extends JpaRepository<User, Long> {
 
 	@Query(value = "select city from users where city like ?1%", nativeQuery = true)
 	List<String> findAllCitiesByLetter(String city);
+
+	@Query(value = "select name from users where active = true", nativeQuery = true)
+	List<String> findActiveUsersName();
+
 }
