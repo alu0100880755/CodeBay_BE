@@ -21,4 +21,10 @@ public interface UsersDAO extends JpaRepository<User, Long> {
 	@Query(value = "select name from users where active = true", nativeQuery = true)
 	List<String> findActiveUsersName();
 
+	@Query(value = "select name from users order by creationdate asc", nativeQuery = true)
+	List<String> findByNameOrderByCreationdateAsc();
+
+	@Query(value = "select name from users order by creationdate desc", nativeQuery = true)
+	List<String> findByNameOrderByCreationdateDesc();
+
 }

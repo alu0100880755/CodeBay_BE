@@ -133,8 +133,8 @@ public class UsersREST {
 
 	}
 
-	// Get Users by creation date (ASC/DESC)
-	@RequestMapping(value = "/date/{order}")
+	// Get Users by creation date (ASC/DESC)(Full JSON)
+	@RequestMapping(value = "/date_full/{order}")
 	public ResponseEntity<List<User>> getUserbyDate(@PathVariable("order") String order) {
 
 		List<User> orderUsers = null;
@@ -148,6 +148,37 @@ public class UsersREST {
 
 		case "desc": {
 			orderUsers = userDAO.findByOrderByCreationdateDesc();
+			break;
+		}
+		}
+
+		if (orderUsers.isEmpty()) {
+
+			return ResponseEntity.noContent().build();
+
+		} else {
+
+			return ResponseEntity.ok(orderUsers);
+
+		}
+
+	}
+
+	// Get Users by creation date (ASC/DESC) (Names)
+	@RequestMapping(value = "/date/{order}")
+	public ResponseEntity<List<String>> getUserNamebyDate(@PathVariable("order") String order) {
+
+		List<String> orderUsers = null;
+
+		switch (order) {
+
+		case "asc": {
+			orderUsers = userDAO.findByNameOrderByCreationdateAsc();
+			break;
+		}
+
+		case "desc": {
+			orderUsers = userDAO.findByNameOrderByCreationdateDesc();
 			break;
 		}
 		}
