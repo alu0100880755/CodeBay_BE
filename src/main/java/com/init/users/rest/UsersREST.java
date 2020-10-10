@@ -78,7 +78,7 @@ public class UsersREST {
 	}
 
 	// Get Users who live in X
-	@RequestMapping(value = "city/{city}")
+	@RequestMapping(value = "/city/{city}")
 	public ResponseEntity<List<User>> getUserbyCity(@PathVariable("city") String city) {
 
 		List<User> activeUsers = userDAO.findByCityStartingWith(city);
@@ -90,6 +90,37 @@ public class UsersREST {
 		} else {
 
 			return ResponseEntity.ok(activeUsers);
+
+		}
+
+	}
+
+	// Get Users by creation date (ASC/DESC)
+	@RequestMapping(value = "/date/{order}")
+	public ResponseEntity<List<User>> getUserbyDate(@PathVariable("order") String order) {
+
+		List<User> orderUsers = null;
+
+		switch (order) {
+
+		case "asc": {
+			orderUsers = userDAO.findByOrderByCreationdateAsc();
+			break;
+		}
+
+		case "desc": {
+			orderUsers = userDAO.findByOrderByCreationdateDesc();
+			break;
+		}
+		}
+
+		if (orderUsers.isEmpty()) {
+
+			return ResponseEntity.noContent().build();
+
+		} else {
+
+			return ResponseEntity.ok(orderUsers);
 
 		}
 

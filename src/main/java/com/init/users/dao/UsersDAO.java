@@ -10,4 +10,8 @@ public interface UsersDAO extends JpaRepository<User, Long> {
 
 	List<User> findByCityStartingWith(String string);
 
+	List<User> findByOrderByCreationdateAsc();
+
+	List<User> findByOrderByCreationdateDesc();
+
 }

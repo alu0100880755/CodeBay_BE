@@ -38,8 +38,8 @@ public class User {
 	@Column(name = "birthday", nullable = false, length = 30)
 	private String birthday;
 
-	@Column(name = "creation_date")
-	private ZonedDateTime creation_date;
+	@Column(name = "creationdate")
+	private ZonedDateTime creationdate;
 
 	// Getter & Setters
 	public Long getId() {
@@ -98,18 +98,18 @@ public class User {
 		this.birthday = birthday;
 	}
 
-	public ZonedDateTime getCreation_date() {
-		return creation_date;
+	public ZonedDateTime getcreationdate() {
+		return creationdate;
 	}
 
-	public void setCreation_date(ZonedDateTime creation_date) {
-		this.creation_date = creation_date;
+	public void setcreationdate(ZonedDateTime creationdate) {
+		this.creationdate = creationdate;
 	}
 
 	// Method for auto-generate data
 	@PrePersist
 	public void addTimestamp() {
-		creation_date = ZonedDateTime.now();
+		creationdate = ZonedDateTime.now();
 	}
 
 }
