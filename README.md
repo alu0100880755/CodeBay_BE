@@ -12,14 +12,14 @@ git clone https://github.com/alu0100880755/CodeBay_BE.git
 [Download Spring Tools](https://spring.io/tools)
 
 ### Loading the project with Spring Tools
-![alt text](https://github.com/alu0100880755/CodeBay_BE/readme_info/load-app.png)
+![image](https://github.com/alu0100880755/CodeBay_BE/blob/master/readme_info/load-app.png "Loading project")
 
 ### Start the app in development mode 
 Right click on the project root and run as a Spring Boot application: 
-![alt text](https://github.com/alu0100880755/CodeBay_BE/readme_info/run-app.png)
+![image](https://github.com/alu0100880755/CodeBay_BE/blob/master/readme_info/run-app.png "Running project")
 
 ### Run the app to apply changes
-![alt text](https://github.com/alu0100880755/CodeBay_BE/readme_info/reload-app.png)
+![image](https://github.com/alu0100880755/CodeBay_BE/blob/master/readme_info/reload-app.png "Reloading project")
 
 ### Spring 
 [Learn more about Spring](https://spring.io/).
