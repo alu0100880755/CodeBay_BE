@@ -8,7 +8,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,7 +20,7 @@ import com.init.users.entities.User;
 
 @RestController
 @EnableCaching
-@RequestMapping("users")
+@RequestMapping("/")
 public class UsersREST {
 
 	@Autowired
@@ -31,8 +30,35 @@ public class UsersREST {
 	// GET SECTION //
 	///////////////////
 
+	// API info Section
+	@RequestMapping("")
+	public ResponseEntity<String> getInfo() {
+
+		String info = "<b>CODEBAY-API</b> <p/> "
+
+				+ "<br/> <b> GET SECTION </b><p/>" + "1.	Get a JSON list of all users ( /users ). <p/>"
+				+ "2.	Get a specific user ({user}) in JSON format ( /users/{user} ). <p/>"
+				+ "3.	Get a list of active users ( /users/active_users ). <p/>"
+				+ "4.	Get a list (String) with the name of the active users (/users/active_users/names). <p/>"
+				+ "5.	Get a JSON list of all users living in X ( /users/city/{X} ). <p/>"
+				+ "6.	Get a list (String) with the name of the cities that start with X ( /users/city_name/{X} ). <p/>"
+				+ "7.	Obtain a list (String) with the name of the users ordered by date of account creation ( /users/date/{asc} ) OR ( /users/date/{desc} ).<p/>"
+				+ "8.	Get a JSON list of users sorted by account creation date ( /users/date_full/{asc} ) OR ( /users/date_full/{desc} ). <p/>"
+
+				+ "<br/> <b> POST SECTION </b> <p/>"
+				+ "1.	Create a new user with an automatically generated user ID and creation date (/users). <p/>"
+
+				+ "<br/> <b> PUT SECTION </b> <p/>" + "1.	Update a user by id ( /users ). <p/>"
+
+				+ "<br/> <b> DELETE SECTION </b> <p/>"
+				+ "1.	Delete a user with id ({id}) by URL ( /users/{id} ). <p/>"
+				+ "2.	Delete a user by id ( /users ). <p/>" + "3.	Delete all users ( /users/deleteallusers ). <p/>";
+
+		return ResponseEntity.ok(info);
+	}
+
 	// Get Full Users List
-	@GetMapping
+	@RequestMapping("users")
 	public ResponseEntity<List<User>> getUser() {
 
 		List<User> users = userDAO.findAll();
@@ -41,7 +67,7 @@ public class UsersREST {
 	}
 
 	// Get specific User By ID
-	@RequestMapping(value = "{userID}")
+	@RequestMapping(value = "users/{userID}")
 	public ResponseEntity<User> getUserById(@PathVariable("userID") Long userID) {
 
 		Optional<User> optionalUser = userDAO.findById(userID);
@@ -58,7 +84,7 @@ public class UsersREST {
 	}
 
 	// Get active Users (Full JSON)
-	@RequestMapping("active_users")
+	@RequestMapping("users/active_users")
 	public ResponseEntity<List<User>> getActiveUser() {
 
 		User user = new User();
@@ -80,7 +106,7 @@ public class UsersREST {
 	}
 
 	// Get active Users (Names)
-	@RequestMapping("active_users/names")
+	@RequestMapping("users/active_users/names")
 	public ResponseEntity<List<String>> getActiveUserName() {
 
 		List<String> activeUsers = userDAO.findActiveUsersName();
@@ -98,7 +124,7 @@ public class UsersREST {
 	}
 
 	// Get Users who live in X
-	@RequestMapping(value = "/city/{city}")
+	@RequestMapping(value = "users/city/{city}")
 	public ResponseEntity<List<User>> getUserbyCity(@PathVariable("city") String city) {
 
 		List<User> activeUsers = userDAO.findByCityStartingWith(city);
@@ -116,7 +142,7 @@ public class UsersREST {
 	}
 
 	// Get cities starting per X
-	@RequestMapping(value = "/city_name/{city}")
+	@RequestMapping(value = "users/city_name/{city}")
 	public ResponseEntity<List<String>> getCities(@PathVariable("city") String city) {
 
 		List<String> userCities = userDAO.findAllCitiesByLetter(city);
@@ -134,7 +160,7 @@ public class UsersREST {
 	}
 
 	// Get Users by creation date (ASC/DESC)(Full JSON)
-	@RequestMapping(value = "/date_full/{order}")
+	@RequestMapping(value = "users/date_full/{order}")
 	public ResponseEntity<List<User>> getUserbyDate(@PathVariable("order") String order) {
 
 		List<User> orderUsers = null;
@@ -165,7 +191,7 @@ public class UsersREST {
 	}
 
 	// Get Users by creation date (ASC/DESC) (Names)
-	@RequestMapping(value = "/date/{order}")
+	@RequestMapping(value = "users/date/{order}")
 	public ResponseEntity<List<String>> getUserNamebyDate(@PathVariable("order") String order) {
 
 		List<String> orderUsers = null;
@@ -200,7 +226,7 @@ public class UsersREST {
 	////////////////////////////
 
 	// Create a user
-	@PostMapping
+	@PostMapping(value = "users")
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 
 		User newUser = userDAO.save(user);
@@ -214,7 +240,7 @@ public class UsersREST {
 	///////////////////////////
 
 	// Update user
-	@PutMapping
+	@PutMapping(value = "users")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 
 		Optional<User> optionalUser = userDAO.findById(user.getId());
@@ -250,7 +276,7 @@ public class UsersREST {
 	/////////////////////
 
 	// Delete user by URL
-	@DeleteMapping(value = "{userID}")
+	@DeleteMapping(value = "users/{userID}")
 	public ResponseEntity<String> deleteUserByURL(@PathVariable("userID") Long userID) {
 
 		userDAO.deleteById(userID);
@@ -260,7 +286,7 @@ public class UsersREST {
 	}
 
 	// Delete user by ID
-	@DeleteMapping
+	@DeleteMapping(value = "users")
 	public ResponseEntity<String> deleteUserById(@RequestBody User user) {
 
 		userDAO.deleteById(user.getId());
@@ -270,7 +296,7 @@ public class UsersREST {
 	}
 
 	// Delete all users
-	@DeleteMapping(value = "/deleteallusers")
+	@DeleteMapping(value = "users/deleteallusers")
 	public ResponseEntity<String> deleteAllUsers() {
 
 		userDAO.deleteAll();
