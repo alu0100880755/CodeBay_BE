@@ -4760,3 +4760,15 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.webjars:s
 2020-10-11 01:14:19,945 [Worker-30: Launching CodeBay_API - CodeBayApiApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2020-10-11 01:14:19,945 [Worker-30: Launching CodeBay_API - CodeBayApiApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ivanb\Downloads\CodeBay\BE\CodeBay\CodeBay_API\src\test\resources
 2020-10-11 02:28:31,737 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-10-11 11:09:06,308 [Worker-3: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-10-11 11:09:08,748 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-10-11 11:09:08,753 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-10-11 11:09:08,768 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2020-10-11 11:09:08,782 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-10-11 11:09:08,782 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ivanb\Downloads\CodeBay\BE\CodeBay\CodeBay_BE\CodeBay_API\src\test\resources
+2020-10-11 11:09:11,375 [Worker-2: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: init.users:CodeBay_API:0.0.1 @ C:\Users\ivanb\Downloads\CodeBay\BE\CodeBay\CodeBay_BE\CodeBay_API\pom.xml.
+2020-10-11 11:09:12,349 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-10-11 11:09:12,352 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-10-11 11:09:12,354 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2020-10-11 11:09:12,358 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-10-11 11:09:12,358 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\ivanb\Downloads\CodeBay\BE\CodeBay\CodeBay_BE\CodeBay_API\src\test\resources
