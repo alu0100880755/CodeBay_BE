@@ -1,1 +1,0 @@
-web: java -Dserver.port=$PORT -jar target/CodeBay_API-0.0.1.jar
