@@ -1,0 +1,5 @@
+package com.init.users.config;
+
+public class SwaggerConfig {
+
+}

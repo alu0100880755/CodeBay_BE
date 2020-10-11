@@ -1,0 +1,21 @@
+package com.init.users.dao;
+
+import java.util.List;
+import java.util.stream.Stream;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.init.users.entities.User;
+
+public interface UsersDAO extends JpaRepository<User, Long> {
+
+	List<User> findByCityStartingWith(String string);
+
+	List<User> findByOrderByCreationdateAsc();
+
+	List<User> findByOrderByCreationdateDesc();
+
+	@Query("select u from Users u")
+	Stream<User> findAllUsers();
+}

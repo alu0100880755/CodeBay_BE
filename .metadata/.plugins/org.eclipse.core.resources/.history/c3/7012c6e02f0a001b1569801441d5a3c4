@@ -1,0 +1,57 @@
+package com.init.users.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
+public class User {
+
+	// Attributes
+	@Id
+	@Column(name = "Id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long Id;
+
+	@Column(name = "Name", nullable = false, length = 30)
+	private String Name;
+
+	// @Column(name = "Surname", nullable = false, length = 30)
+	// private String Surname;
+
+	// @Column(name = "Email", nullable = false, length = 30)
+	// private String Email;
+
+	// @Column(name = "City", nullable = false, length = 30)
+	// private String City;
+
+	// @Column(name = "Active", nullable = false, length = 30)
+	// private Boolean Active;
+
+	// @Column(name = "Birthday", nullable = false, length = 30)
+	// private String Birthday;
+
+	// @Column(name = "creation_date", nullable = false, length = 30)
+	// private LocalDateTime Creation_Date;
+
+	// Getter & Setters
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+}
